@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Express Train Scheduler</title>
+    <!-- typekit fonts -->
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/byo2oos.css" /> -->
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Allerta+Stencil&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="jumbotron">
+        <h1>
+          Express Train Scheduler
+        </h1>
+        <h3>Set Fire to all are the base</h3>
+      </header>
+      <section class="row" id="currentSchedule">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-header">Current Schedule</div>
+            <div class="card-body">
+              <table class="table table-sm table-hover" id="current-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Train</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col" class="cntrtxt">Frequency</th>
+                    <th scope="col" class="cntrtxt">Next Arrival</th>
+                    <th scope="col" class="cntrtxt">Minutes Away</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="row" id="addTrain">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-header">Add Train</div>
+            <div class="card-body">
+              <!-- Entry Form -->
+              <form>
+                <div class="form-group">
+                  <label for="train-name-input">Train Name</label>
+                  <input
+                    class="form-control"
+                    id="train-name-input"
+                    placeholder="Train Name"
+                    type="text"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="destination-input">Destination</label>
+                  <input
+                    class="form-control"
+                    id="destination-input"
+                    placeholder="Anyplace"
+                    type="text"
+                  />
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="first-train-input">First Train Time</label>
+                      <input
+                        class="form-control"
+                        id="first-train-input"
+                        placeholder="01:23"
+                        type="time"
+                        aria-describedby="ftrainHelpBlock"
+                      /><small
+                        id="ftrainHelpBlock"
+                        class="form-text text-muted"
+                      >
+                        Please enter using military time.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="frequency-input">frequency (min)</label>
+                      <input
+                        class="form-control"
+                        id="frequency-input"
+                        placeholder="20"
+                        type="number"
+                        min="1"
+                        max="1440"
+                        aria-describedby="freqHelpBlock"
+                      />
+                      <small id="freqHelpBlock" class="form-text text-muted">
+                        in minutes please.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary float-right" id="add-train-btn">
+                  Add!
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!---------––––––––--->
+
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <!-- Moment.js Reference -->
+    <script src="./assets/javascript/moment.js"></script>
+
+    <!-- Bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./assets/javascript/app.js"></script>
+  </body>
+</html>

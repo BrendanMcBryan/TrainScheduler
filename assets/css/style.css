@@ -1,0 +1,35 @@
+.card-header {
+  background-image: linear-gradient(to bottom right, teal, maroon);
+  color: whitesmoke;
+  font-family: "Allerta Stencil", sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+}
+table {
+  font-size: 0.8rem;
+}
+.cntrtxt {
+  text-align: center;
+}
+h1,
+h3 {
+  font-family: "Allerta Stencil", sans-serif;
+  color: teal;
+}
+h1 {
+  color: maroon;
+  font-weight: bold;
+}
+
+.faded {
+  opacity: 0.5;
+}
+.hurry {
+  color: maroon;
+  font-weight: bold;
+  background: rgba(128, 0, 0, 0.383);
+}
+.getready {
+  color: gold;
+  /* background: rgba(255, 217, 0, 0.246); */
+}
