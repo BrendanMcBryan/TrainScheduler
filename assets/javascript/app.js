@@ -34,6 +34,7 @@ $("#add-train-btn").on("click", function(event) {
     .val()
     .trim();
 
+  // Create Object and send to firebase
   var newTrain = {
     name: trainName,
     destination: trainDestin,
@@ -41,11 +42,6 @@ $("#add-train-btn").on("click", function(event) {
     frequency: trainFreq
   };
   database.ref().push(newTrain);
-
-  // console.log(newTrain.name);
-  // console.log(newTrain.destination);
-  console.log(newTrain.firstTrain);
-  // console.log(newTrain.frequency);
 
   // Clear form
   $("#train-name-input").val("");
@@ -63,16 +59,40 @@ database.ref().on("child_added", function(childSnapshot) {
   var trainDestin = childSnapshot.val().destination;
   var trainFirst = moment(childSnapshot.val().firstTrain, "hh:mm a");
   var trainFirstText = trainFirst.format("hh:mm a");
-  var trainFreq = parseInt(childSnapshot.val().frequency, 10);
+  var trainFreq = childSnapshot.val().frequency;
+
+  // Set the frequency text to be better english
+  if (trainFreq < 2) {
+    var trainFreqtext = trainFreq + " minute";
+  } else if (trainFreq >= 2 && trainFreq < 60) {
+    var trainFreqtext = trainFreq + " minutes";
+  } else {
+    var trainFreqtext = Math.floor(trainFreq / 60);
+    if (Math.floor(trainFreq / 60) < 2) {
+      trainFreqtext += " hour";
+    } else {
+      trainFreqtext += " hours";
+    }
+    if (trainFreq % 60 != 0) {
+      if (trainFreq % 60 === 1) {
+        trainFreqtext += " & ";
+        trainFreqtext += (trainFreq % 60);
+        trainFreqtext += " minute";
+      } else {
+        trainFreqtext += " & ";
+        trainFreqtext += (trainFreq % 60);
+        trainFreqtext += " minutes";
+      }
+    }
+  }
 
   // Make the train name based on First train Start time and name
   // some found grep
   var trainNum = trainFirstText.replace(/\D/g, "");
   var trainNameDisplay = trainNum + " " + trainName;
 
-  // calculate the Next arrival
+  // calculate the Next arrival and make a midnight var for later styling
   var rightNow = moment();
-  // console.log(rightNow);
   var midnight = moment("11:59 pm", "hh:mm a");
 
   // calculculate train schedule
@@ -82,7 +102,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
   while (scheduleNeeded) {
     var nextTrain = moment(trainFirst).add(trainFreq, "m");
-
     while (nextTrain < midnight) {
       trainSched.push(nextTrain);
       nextTrain = moment(nextTrain).add(trainFreq, "m");
@@ -96,6 +115,7 @@ database.ref().on("child_added", function(childSnapshot) {
     var missedTrains = 0;
     if (trainSched[key] < rightNow) {
       missedTrains++;
+      // if there is only 1 item in the schedule then there are no more trains today.
       if (missedTrains === trainSched.length) {
         var minAway = "Tomorrow";
         var nextArrivalText = moment(trainFirst).format("h:mm a");
@@ -106,32 +126,30 @@ database.ref().on("child_added", function(childSnapshot) {
       var nextArrival = trainSched[key];
       var nextArrivalText = moment(nextArrival).format("h:mm a");
       var minAway = moment(nextArrival, "hh:mm a").fromNow();
-      var minAwayTrue = moment(nextArrival, "hh:mm a").fromNow(true);
-      console.log(trainNameDisplay + " " + minAwayTrue + "-true");
+      // var minAwayTrue = moment(nextArrival, "hh:mm a").fromNow(true);
+      // console.log(trainNameDisplay + " " + minAwayTrue + "-true");
+      var minAwayNumber = nextArrival.diff(rightNow, "m");
       break;
-      // console.log("another train");
     }
   }
 
-  // add new row to schedule
+  // add new row to Current schedule
   var newRow = $("<tr>").append(
     $("<td>").text(trainNameDisplay),
     $("<td>").text(trainDestin),
-    $("<td class='cntrtxt'>").text(trainFreq + " minutes"),
-    $("<td class='cntrtxt'>").text(nextArrivalText),
-    $("<td class='cntrtxt'>").text(minAway)
+    $("<td class='cntr-txt'>").text(trainFreqtext),
+    $("<td class='cntr-txt'>").text(nextArrivalText),
+    $("<td class='cntr-txt'>").text(minAway)
   );
   // add some classes bassed on min away
-  console.log(minTest + " " + typeof minTest);
-  // console.log(trainNameDisplay + " " + minTest + "-mintest");
+
   if (minAway === "Tomorrow") {
     newRow.addClass("faded");
   } else {
-    var minTest = parseInt(minAwayTrue.replace(/\D/g, ""), 10);
-    if (minTest > 31) {
-    } else if (minTest < 30 && minTest > 10) {
+    if (minAwayNumber > 31) {
+    } else if (minAwayNumber < 30 && minAwayNumber > 10) {
       newRow.addClass("getready");
-    } else if (minTest < 10) {
+    } else if (minAwayNumber < 10) {
       newRow.addClass("hurry");
     }
   }

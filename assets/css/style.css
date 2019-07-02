@@ -1,14 +1,24 @@
-.card-header {
-  background-image: linear-gradient(to bottom right, teal, maroon);
+.card-header,
+.btn {
+  background-image: linear-gradient(to bottom right, teal, teal, orange);
   color: whitesmoke;
   font-family: "Allerta Stencil", sans-serif;
   font-style: normal;
   text-transform: uppercase;
 }
-table {
-  font-size: 0.8rem;
+
+.btn {
+  background-image: linear-gradient(to bottom right teal, orange);
+  border: none;
 }
-.cntrtxt {
+
+table {
+  font-size: 0.9rem;
+}
+th {
+  color: teal;
+}
+.cntr-txt {
   text-align: center;
 }
 h1,
@@ -17,7 +27,7 @@ h3 {
   color: teal;
 }
 h1 {
-  color: maroon;
+  color: orange;
   font-weight: bold;
 }
 
@@ -25,12 +35,12 @@ h1 {
   opacity: 0.5;
 }
 .hurry {
-  color: maroon;
+  color: darkred;
   font-weight: bold;
   background: rgba(238, 47, 47, 0.123);
 }
 .getready {
-  color:orange;
+  color: orange;
   font-weight: bold;
   background: rgba(250, 199, 89, 0.171);
 }
