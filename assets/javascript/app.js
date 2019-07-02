@@ -72,6 +72,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
   // calculate the Next arrival
   var rightNow = moment();
+  // console.log(rightNow);
   var midnight = moment("11:59 pm", "hh:mm a");
 
   // calculculate train schedule
@@ -105,6 +106,8 @@ database.ref().on("child_added", function(childSnapshot) {
       var nextArrival = trainSched[key];
       var nextArrivalText = moment(nextArrival).format("h:mm a");
       var minAway = moment(nextArrival, "hh:mm a").fromNow();
+      var minAwayTrue = moment(nextArrival, "hh:mm a").fromNow(true);
+      console.log(trainNameDisplay + " " + minAwayTrue + "-true");
       break;
       // console.log("another train");
     }
@@ -119,18 +122,19 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td class='cntrtxt'>").text(minAway)
   );
   // add some classes bassed on min away
-  // var minTest = parseInt(minAway.replace(/\D/g, ""), 10);
-
-  // if (minAway === "Tomorrow") {
-  //   newRow.addClass("faded");
-  // }
-
-  // if (minTest < 30 && minTest > 10) {
-  //   newRow.addClass("getready");
-  // }
-  // if (minTest < 10) {
-  //   newRow.addClass("hurry");
-  // }
+  console.log(minTest + " " + typeof minTest);
+  // console.log(trainNameDisplay + " " + minTest + "-mintest");
+  if (minAway === "Tomorrow") {
+    newRow.addClass("faded");
+  } else {
+    var minTest = parseInt(minAwayTrue.replace(/\D/g, ""), 10);
+    if (minTest > 31) {
+    } else if (minTest < 30 && minTest > 10) {
+      newRow.addClass("getready");
+    } else if (minTest < 10) {
+      newRow.addClass("hurry");
+    }
+  }
 
   // Append the new row to the table
   $("#current-table > tbody").append(newRow);
