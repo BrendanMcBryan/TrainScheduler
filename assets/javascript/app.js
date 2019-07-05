@@ -76,11 +76,11 @@ database.ref().on("child_added", function(childSnapshot) {
     if (trainFreq % 60 != 0) {
       if (trainFreq % 60 === 1) {
         trainFreqtext += " & ";
-        trainFreqtext += (trainFreq % 60);
+        trainFreqtext += trainFreq % 60;
         trainFreqtext += " minute";
       } else {
         trainFreqtext += " & ";
-        trainFreqtext += (trainFreq % 60);
+        trainFreqtext += trainFreq % 60;
         trainFreqtext += " minutes";
       }
     }
@@ -142,14 +142,14 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td class='cntr-txt'>").text(minAway)
   );
   // add some classes bassed on min away
-
+  
   if (minAway === "Tomorrow") {
     newRow.addClass("faded");
   } else {
     if (minAwayNumber > 31) {
     } else if (minAwayNumber < 30 && minAwayNumber > 10) {
       newRow.addClass("getready");
-    } else if (minAwayNumber < 10) {
+    } else if (minAwayNumber <= 10) {
       newRow.addClass("hurry");
     }
   }
@@ -157,3 +157,4 @@ database.ref().on("child_added", function(childSnapshot) {
   // Append the new row to the table
   $("#current-table > tbody").append(newRow);
 });
+

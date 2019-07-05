@@ -11,13 +11,33 @@
   background-image: linear-gradient(to bottom right teal, orange);
   border: none;
 }
+body {
+  background-image: linear-gradient(to bottom right,paleturquoise, lightyellow);
+  
+}
 
+.jumbotron {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+}
+
+.card {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
 table {
   font-size: 0.9rem;
 }
 th {
   color: teal;
 }
+tr:hover{
+  /* font-weight: bold; */
+}
+tfoot {
+  border-top: 2px solid teal;
+}
+
 .cntr-txt {
   text-align: center;
 }
@@ -33,6 +53,7 @@ h1 {
 
 .faded {
   opacity: 0.5;
+  background: rgba(128, 123, 123, 0.123);
 }
 .hurry {
   color: darkred;
