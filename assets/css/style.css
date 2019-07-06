@@ -12,14 +12,25 @@
   border: none;
 }
 body {
-  background-image: linear-gradient(to bottom right,paleturquoise, lightyellow);
-  
+  background-image: linear-gradient(
+    to bottom right,
+    paleturquoise,
+    lightyellow
+  );
+}
+.p-2 {
+  margin: 0;
+  padding: 0;
 }
 
 .jumbotron {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   padding-bottom: 1rem;
   padding-top: 1.5rem;
+  background-color: teal;
+}
+.gradient {
+  background-image: linear-gradient(to bottom right teal, orange);
 }
 
 .card {
@@ -31,7 +42,7 @@ table {
 th {
   color: teal;
 }
-tr:hover{
+tr:hover {
   /* font-weight: bold; */
 }
 tfoot {
@@ -47,7 +58,7 @@ h3 {
   color: teal;
 }
 h1 {
-  color: orange;
+  color: white;
   font-weight: bold;
 }
 

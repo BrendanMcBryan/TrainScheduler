@@ -29,12 +29,15 @@
         <h1>
           Express Train Scheduler
         </h1>
-        <h3>Set Fire to all are the base</h3>
+    
       </header>
       <section class="row" id="currentSchedule">
         <div class="col-md-12">
           <div class="card mb-4">
-            <div class="card-header">Current Schedule</div>
+            <div class="card-header d-flex">
+              <div class="p-2">Current Schedule</div>
+              <div id="currentTimeDiv" class="ml-auto p-2"></div>
+            </div>
             <div class="card-body">
               <table class="table table-sm table-hover" id="current-table">
                 <thead>
@@ -51,10 +54,10 @@
                   <tr>
                     <td class="faded cntr-txt">No More Trains Today</td>
                     <td colspan="2" class="getready cntr-txt">
-                      Train departs within 30 minutes
+                      Train arrives within 30 minutes
                     </td>
                     <td colspan="2" class="hurry cntr-txt">
-                      Train Leaving Soon!
+                      Train arrives soon!
                     </td>
                   </tr>
                 </tfoot>

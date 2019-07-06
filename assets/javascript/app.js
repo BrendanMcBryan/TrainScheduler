@@ -142,7 +142,7 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td class='cntr-txt'>").text(minAway)
   );
   // add some classes bassed on min away
-  
+
   if (minAway === "Tomorrow") {
     newRow.addClass("faded");
   } else {
@@ -156,5 +156,13 @@ database.ref().on("child_added", function(childSnapshot) {
 
   // Append the new row to the table
   $("#current-table > tbody").append(newRow);
+
 });
 
+setInterval(updateTime, 1000)
+
+function updateTime() {
+  var rightNow = moment().format("h:mm:ss a");
+
+  $("#currentTimeDiv").text(rightNow);
+}
