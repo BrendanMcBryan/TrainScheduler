@@ -1,3 +1,7 @@
+*{
+  font-family: "Allerta Stencil", sans-serif;
+}
+
 .card-header,
 .btn {
   background-image: linear-gradient(to bottom right, teal, teal, orange);
@@ -33,6 +37,7 @@ body {
 }
 table {
   font-size: 0.9rem;
+  font-family: "Allerta Stencil", sans-serif;
 }
 th {
   color: teal;
