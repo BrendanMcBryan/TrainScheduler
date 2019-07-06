@@ -12,11 +12,7 @@
   border: none;
 }
 body {
-  background-image: linear-gradient(
-    to bottom right,
-    paleturquoise,
-    lightyellow
-  );
+  background-image: linear-gradient(to bottom, paleturquoise, ivory);
 }
 .p-2 {
   margin: 0;
@@ -25,13 +21,12 @@ body {
 
 .jumbotron {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
   padding-bottom: 1rem;
   padding-top: 1.5rem;
   background-color: teal;
 }
-.gradient {
-  background-image: linear-gradient(to bottom right teal, orange);
-}
+
 
 .card {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);

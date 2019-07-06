@@ -109,7 +109,7 @@ database.ref().on("child_added", function(childSnapshot) {
     scheduleNeeded = false;
   }
 
-  // Find the next arrival calculate minutes away
+  // Find the next arrival and calculate minutes away
 
   for (const key in trainSched) {
     var missedTrains = 0;
@@ -141,6 +141,7 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td class='cntr-txt'>").text(nextArrivalText),
     $("<td class='cntr-txt'>").text(minAway)
   );
+
   // add some classes bassed on min away
 
   if (minAway === "Tomorrow") {
@@ -156,13 +157,12 @@ database.ref().on("child_added", function(childSnapshot) {
 
   // Append the new row to the table
   $("#current-table > tbody").append(newRow);
-
 });
 
-setInterval(updateTime, 1000)
+//code for live time updates
+setInterval(updateTime, 1000);
 
 function updateTime() {
   var rightNow = moment().format("h:mm:ss a");
-
   $("#currentTimeDiv").text(rightNow);
 }
